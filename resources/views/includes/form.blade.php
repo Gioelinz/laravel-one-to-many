@@ -75,19 +75,32 @@
         /* Validazione al keyup */
 
         const title = document.getElementById('title');
+        const description = document.getElementById('description');
+        const image = document.getElementById('image');
 
-        function validate() {
-            const inputValue = title.value;
 
-            if (inputValue.length > 5) {
-                title.classList.add('is-valid');
-                title.classList.remove('is-invalid');
+        function validate(v) {
+            const inputValue = v.value;
+
+            if (inputValue.length > 4) {
+                v.classList.add('is-valid');
+                v.classList.remove('is-invalid');
             } else {
-                title.classList.add('is-invalid');
-                title.classList.remove('is-valid');
+                v.classList.add('is-invalid');
+                v.classList.remove('is-valid');
             }
         }
 
-        title.onkeyup = validate;
+        title.addEventListener('keyup', e => {
+            validate(e.target);
+        });
+
+        description.addEventListener('keyup', e => {
+            validate(e.target);
+        });
+
+        image.addEventListener('keyup', e => {
+            validate(e.target);
+        });
     </script>
 @endsection
