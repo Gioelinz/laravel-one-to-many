@@ -102,7 +102,8 @@ class PostController extends Controller
             [
                 'title' => ['required', 'string', Rule::unique('posts')->ignore($post->id), 'min:5', 'max:255'],
                 'image' => ['required', 'string', Rule::unique('posts')->ignore($post->id)],
-                'description' => 'required|string',
+                'description' => 'required|string|min:5',
+                'category_id' => 'nullable|exists:categories,id'
             ],
             [
                 'required' => 'Il campo :attribute è obbligatorio!',

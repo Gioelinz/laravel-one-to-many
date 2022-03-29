@@ -22,25 +22,45 @@
     @csrf
     <div class="row gy-5">
         <div class="col-8">
-            <input type="text" class="form-control" placeholder="Titolo" name="title" id="title"
-                value="{{ old('title', $post->title) }}">
+            <input type="text" class="form-control @error('title') is-invalid @enderror" placeholder="Titolo"
+                name="title" id="title" value="{{ old('title', $post->title) }}">
+            @error('title')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
         </div>
         <div class="col-4">
-            <select class="custom-select" name="category_id">
+            <select class="custom-select @error('category_id') is-invalid @enderror" name="category_id">
                 <option value="">Nessuna Categoria</option>
                 @foreach ($categories as $category)
                     <option value="{{ $category->id }}" @if (old('category_id', $post->category_id) == $category->id) selected @endif>
                         {{ $category->label }}</option>
                 @endforeach
             </select>
+            @error('category_id')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
         </div>
         <div class="col-12 my-5">
-            <textarea class="form-control" name="description" id="description" rows="5"
+            <textarea class="form-control @error('description') is-invalid @enderror" name="description" id="description" rows="5"
                 placeholder="Inserisci testo..">{{ old('description', $post->description) }}</textarea>
+            @error('description')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
         </div>
         <div class="col-12">
-            <input type="text" class="form-control" placeholder="Url Immagine" name="image" id="image"
-                value="{{ old('image', $post->image) }}">
+            <input type="text" class="form-control @error('image') is-invalid @enderror" placeholder="Url Immagine"
+                name="image" id="image" value="{{ old('image', $post->image) }}">
+            @error('image')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
         </div>
     </div>
     <div class="controls d-flex justify-content-end mt-2">
