@@ -28,8 +28,10 @@
                         <td>
                             <a href="{{ route('admin.posts.show', $post) }}">{{ $post->title }}</a>
                         </td>
-                        <td><span
-                                class="badge badge-pill badge-{{ $post->category->color }}">{{ $post->category->label }}</span>
+                        <td>
+                            <span
+                                class="badge badge-pill badge-{{ $post->category->color ?? 'dark' }}">{!! $post->category->label ?? '<i class="fa-solid fa-ban"></i>' !!}
+                            </span>
                         </td>
                         <td>{{ date('F j Y g:i a', strtotime($post->updated_at)) }}</td>
                         <td class="d-flex">
@@ -37,11 +39,6 @@
                                     class="fa-solid fa-pencil"></i></a>
 
                             @include('includes.modal-confirm')
-                            {{-- <form action="{{ route('admin.posts.destroy', $post) }}" method="POST">
-                                @method('DELETE')
-                                @csrf
-                                <button type="submit" class="btn btn-danger" href="">Delete</button>
-                            </form> --}}
                         </td>
                     </tr>
 

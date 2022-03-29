@@ -21,9 +21,18 @@
 
     @csrf
     <div class="row gy-5">
-        <div class="col-12">
+        <div class="col-8">
             <input type="text" class="form-control" placeholder="Titolo" name="title" id="title"
                 value="{{ old('title', $post->title) }}">
+        </div>
+        <div class="col-4">
+            <select class="custom-select" name="category_id">
+                <option value="">Nessuna Categoria</option>
+                @foreach ($categories as $category)
+                    <option value="{{ $category->id }}" @if (old('category_id', $post->category_id) == $category->id) selected @endif>
+                        {{ $category->label }}</option>
+                @endforeach
+            </select>
         </div>
         <div class="col-12 my-5">
             <textarea class="form-control" name="description" id="description" rows="5"
