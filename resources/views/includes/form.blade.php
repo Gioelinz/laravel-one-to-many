@@ -80,7 +80,7 @@
 
 
         function validate(v) {
-            setTimeout(() => {
+            const validateTimeout = setTimeout(() => {
                 v.classList.remove('is-loading');
 
                 const inputValue = v.value;
@@ -88,13 +88,11 @@
                 if (inputValue.length > 4) {
                     v.classList.add('is-valid');
                     v.classList.remove('is-invalid');
-                    return
                 } else {
                     v.classList.add('is-invalid');
                     v.classList.remove('is-valid');
                 }
             }, 1500);
-
         }
 
         function classToggler(e) {
