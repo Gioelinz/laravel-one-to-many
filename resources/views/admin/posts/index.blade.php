@@ -16,6 +16,7 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Title</th>
+                    <th scope="col">Category</th>
                     <th scope="col">Last update</th>
                     <th scope="col">Actions</th>
                 </tr>
@@ -26,6 +27,9 @@
                         <th scope="row">{{ $post->id }}</th>
                         <td>
                             <a href="{{ route('admin.posts.show', $post) }}">{{ $post->title }}</a>
+                        </td>
+                        <td><span
+                                class="badge badge-pill badge-{{ $post->category->color }}">{{ $post->category->label }}</span>
                         </td>
                         <td>{{ date('F j Y g:i a', strtotime($post->updated_at)) }}</td>
                         <td class="d-flex">
