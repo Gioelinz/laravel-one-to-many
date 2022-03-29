@@ -101,7 +101,7 @@ class PostController extends Controller
         $request->validate(
             [
                 'title' => ['required', 'string', Rule::unique('posts')->ignore($post->id), 'min:5', 'max:255'],
-                'image' => ['required', 'string', Rule::unique('posts')->ignore($post->id)],
+                'image' => ['required', 'url', Rule::unique('posts')->ignore($post->id)],
                 'description' => 'required|string|min:5',
                 'category_id' => 'nullable|exists:categories,id'
             ],
@@ -109,6 +109,7 @@ class PostController extends Controller
                 'required' => 'Il campo :attribute è obbligatorio!',
                 'title.unique' => "Il Post $request->title è già esistente!",
                 'image.unique' => "Questa immagine è già stata inserita!",
+                'image.url' => "Inserisci un url valido!",
                 'title.min' => "$request->title è lungo meno di 5 caratteri!"
             ]
         );

@@ -69,3 +69,25 @@
     </div>
     </form>
 </div>
+
+@section('scripts')
+    <script>
+        /* Validazione al keyup */
+
+        const title = document.getElementById('title');
+
+        function validate() {
+            const inputValue = title.value;
+
+            if (inputValue.length > 5) {
+                title.classList.add('is-valid');
+                title.classList.remove('is-invalid');
+            } else {
+                title.classList.add('is-invalid');
+                title.classList.remove('is-valid');
+            }
+        }
+
+        title.onkeyup = validate;
+    </script>
+@endsection
