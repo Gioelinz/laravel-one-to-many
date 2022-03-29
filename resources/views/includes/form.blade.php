@@ -80,26 +80,41 @@
 
 
         function validate(v) {
-            const inputValue = v.value;
+            setTimeout(() => {
+                v.classList.remove('is-loading');
 
-            if (inputValue.length > 4) {
-                v.classList.add('is-valid');
-                v.classList.remove('is-invalid');
-            } else {
-                v.classList.add('is-invalid');
-                v.classList.remove('is-valid');
-            }
+                const inputValue = v.value;
+
+                if (inputValue.length > 4) {
+                    v.classList.add('is-valid');
+                    v.classList.remove('is-invalid');
+                    return
+                } else {
+                    v.classList.add('is-invalid');
+                    v.classList.remove('is-valid');
+                }
+            }, 1500);
+
+        }
+
+        function classToggler(e) {
+            e.classList.remove('is-valid');
+            e.classList.remove('is-invalid');
+            e.classList.add('is-loading');
         }
 
         title.addEventListener('keyup', e => {
+            classToggler(e.target);
             validate(e.target);
         });
 
         description.addEventListener('keyup', e => {
+            classToggler(e.target);
             validate(e.target);
         });
 
         image.addEventListener('keyup', e => {
+            classToggler(e.target);
             validate(e.target);
         });
     </script>
