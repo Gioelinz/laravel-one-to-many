@@ -78,9 +78,14 @@
         const description = document.getElementById('description');
         const image = document.getElementById('image');
 
+        /* inizializzo per il clear nei keyup veloci(evitare di cambiare classi troppo velocemente) */
+        let validateTimeout;
 
         function validate(v) {
-            const validateTimeout = setTimeout(() => {
+
+            clearTimeout(validateTimeout);
+
+            validateTimeout = setTimeout(() => {
                 v.classList.remove('is-loading');
 
                 const inputValue = v.value;
