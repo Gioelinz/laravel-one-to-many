@@ -100,6 +100,22 @@
             }, 1500);
         }
 
+        function validateImage(v) {
+
+            setTimeout(() => {
+                v.classList.remove('is-loading');
+                const inputValue = v.value;
+
+                if (inputValue.startsWith("https://") || inputValue.startsWith("http://")) {
+                    v.classList.add('is-valid');
+                    v.classList.remove('is-invalid');
+                } else {
+                    v.classList.add('is-invalid');
+                    v.classList.remove('is-valid');
+                }
+            }, 1500);
+        }
+
         function classToggler(e) {
             e.classList.remove('is-valid');
             e.classList.remove('is-invalid');
@@ -116,9 +132,9 @@
             validate(e.target);
         });
 
-        image.addEventListener('keyup', e => {
+        image.addEventListener('change', e => {
             classToggler(e.target);
-            validate(e.target);
+            validateImage(e.target);
         });
     </script>
 @endsection
